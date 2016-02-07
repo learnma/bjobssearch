@@ -9,7 +9,6 @@ class Dropdown extends React.Component {
 
     render() {
         var result = this.props.tags.map(e => {
-            //var tail = e.substring(this.props.prefix.length);
             return (<li key={_.uniqueId()} onClick={evt => this.handleClick(evt, e)}>
                         <span>
                             {e}
@@ -64,11 +63,19 @@ class SearchableInput extends React.Component {
         onSelected(tag);
     }
 
+    handleSubmit() {
+        this.setState({
+            showdropdown: false
+        });
+        var tag = this.refs.myInput.value;
+        var {onSelected} = this.props;
+        onSelected(tag);
+    }
+
     render() {
         var dropdown = undefined;
         var {tags} = this.props;
         if (this.state.showdropdown) {
-            //var filter = _.filter(tags, j => j.startsWith(this.input));
             var re = new RegExp(this.input, 'i');
             var filter = _.filter(tags, j => j.match(re));
             dropdown = <Dropdown 
@@ -77,16 +84,20 @@ class SearchableInput extends React.Component {
                             prefix={this.input} />;
         }
         return (
-            <div className="form-group holder">
-                <input 
-                    ref="myInput"
-                    className="form-control"
-                    onFocus={e => this.onInputChanged(e)}
-                    onChange={e => this.onInputChanged(e)}
-                    onBlur={e => this.onInputBlur(e)}
-                    type="text" />
-                {dropdown}
-            </div>
+            <form onSubmit={() => this.handleSubmit()}>
+                <div className="form-group holder">
+                        <input 
+                            placeholder="Search jobs"
+                            ref="myInput"
+                            className="form-control"
+                            onFocus={e => this.onInputChanged(e)}
+                            onChange={e => this.onInputChanged(e)}
+                            onBlur={e => this.onInputBlur(e)}
+                            ariaDescribedby="basic-addon1"
+                            type="text" />
+                    {dropdown}
+                </div>
+            </form>
         );
     }
 }

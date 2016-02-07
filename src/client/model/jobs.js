@@ -1,14 +1,19 @@
 /*eslint no-unused-vars: 0*/
 var _ = require('lodash');
+var moment = require('moment');
 
 function Jobs(_alljobs) {
     var alljobs = _alljobs;
     var filters = new Map();
+    var sortCriteria = undefined;
 
     var get = function() {
         var jobs = alljobs;
         for (var filter of filters.values()) {
             jobs = jobs.filter(j => eval(filter));
+        }
+        if (sortCriteria) {
+            jobs = _.sortBy(jobs, j => eval(sortCriteria));
         }
         return jobs;
     };
@@ -26,11 +31,26 @@ function Jobs(_alljobs) {
         return filters.get(name);
     };
 
+    var setSortCriteria = function(criteria) {
+        sortCriteria = criteria;
+    };
+
+    var removeSortCriteria = function() {
+        sortCriteria = undefined;
+    };
+
+    var getSortCriteria = function() {
+        return sortCriteria;
+    };
+
     return {
         get: get,
         addFilter: addFilter,
         removeFilter: removeFilter,
-        getFilter: getFilter
+        getFilter: getFilter,
+        setSortCriteria: setSortCriteria,
+        removeSortCriteria: removeSortCriteria,
+        getSortCriteria: getSortCriteria
     };
 }
 

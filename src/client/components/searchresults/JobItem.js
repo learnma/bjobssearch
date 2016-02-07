@@ -1,3 +1,4 @@
+var moment = require('moment');
 import _ from 'lodash';
 import React from 'react';
 
@@ -6,8 +7,9 @@ var jobItemStyle = {
 };
 
 class JobItem extends React.Component {
+
     render() {
-        var {address, sponsoredby, name, salary, description} = this.props.jobitem;
+        var {address, sponsoredby, name, salary, description, date} = this.props.jobitem;
         var descItems = description.map(d => {
             return (
                 <div key={_.uniqueId()}>
@@ -28,6 +30,8 @@ class JobItem extends React.Component {
                     <br />
                     <br />
                     {descItems}
+                    <br />
+                    <span className="pull-right" style={{fontSize: '11px', color: '#b1b1b1'}}>{moment(date, 'DD-MM-YYYY').fromNow()}</span>
                 </div>
             </div>
         );

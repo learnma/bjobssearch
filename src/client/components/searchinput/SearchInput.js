@@ -12,7 +12,7 @@ class SearchInput extends React.Component {
                     <h4>Search Jobs in Bangalore</h4>
                 </div>
                 <div className="row">
-                    <div className="col-md-5">
+                    <div className="col-md-10">
                         <SearchableInput 
                             tags={allkeys}
                             onSelected={tag => this.props.onKeyChanged(tag)}

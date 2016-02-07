@@ -11,7 +11,7 @@ class JobItemList extends React.Component {
             return <JobItem key={id} jobitem={item} />;
         });
         return (
-            <div>
+            <div style={{height: '600px', overflow: 'auto'}}>
                 {jobitemNodes}
             </div>
         );
