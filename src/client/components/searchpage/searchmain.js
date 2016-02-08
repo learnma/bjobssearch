@@ -3,9 +3,9 @@ import React from 'react';
 import SortAndFilterPage from '../sortandfilterpage/SortAndFilterPage'; 
 import SearchInput from '../searchinput/SearchInput';
 import SearchResults from '../searchresults/SearchResults';
-import Jobs from '../../model/jobs';
+import JobFactory from '../../model/jobs';
 
-var jobsdata = require('./jobs-data');
+var jobsdata = require('./jobs-data').getJobs();
 var keys = _.uniq(_.flatten(_.pluck(jobsdata, 'tags')));
 
 class SearchMain extends React.Component {
@@ -14,20 +14,28 @@ class SearchMain extends React.Component {
         super(props);
         this.state = {
             jobsdata: jobsdata,
-            jobsobj: new Jobs(jobsdata)
+            jobsobj: JobFactory.create(jobsdata)
         };
+    }
+
+    matchTags(tags, key) {
+        var ret = _.find(tags, t => {
+            var re = new RegExp(key, 'i');
+            return t.match(re);
+        });
+        return ret;
     }
 
     onkeyChanged(key) {
         var jobsdataSearched;
         if (key) {
-            jobsdataSearched = _.filter(jobsdata, j => j.tags.indexOf(key) !== -1);
+            jobsdataSearched = _.filter(jobsdata, j => this.matchTags(j.tags, key));
         } else {
             jobsdataSearched = jobsdata;
         }
         this.setState({
             jobsdata: jobsdataSearched,
-            jobsobj: new Jobs(jobsdataSearched)
+            jobsobj: JobFactory.create(jobsdataSearched)
         });
     }
 
@@ -99,4 +107,4 @@ class SearchMain extends React.Component {
     }
 }
 
-export default SearchMain;
+module.exports = SearchMain;

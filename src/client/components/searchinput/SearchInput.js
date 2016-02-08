@@ -27,4 +27,4 @@ class SearchInput extends React.Component {
     }
 }
 
-export default SearchInput;
+module.exports = SearchInput;

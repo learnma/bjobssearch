@@ -1,5 +1,5 @@
 import _ from 'lodash';
-var jobsdata = require('../searchpage/jobs-data');
+var jobsdata = require('../searchpage/jobs-data').getJobs();
 
 module.exports = {
     SalaryFilters: [
@@ -35,6 +35,9 @@ module.exports = {
     ],
 
     PincodeFilters: function() {
+        if (!jobsdata) {
+            return [];
+        }
         var pincodes = _.pluck(jobsdata, 'address.pincode');
         pincodes = _.uniq(pincodes);
         var data = pincodes.map(p => {

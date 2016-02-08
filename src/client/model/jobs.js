@@ -54,4 +54,10 @@ function Jobs(_alljobs) {
     };
 }
 
-module.exports = Jobs;
+function createJobs(_alljobs) {
+    return new Jobs(_alljobs);
+}
+
+module.exports = {
+    create: createJobs
+};

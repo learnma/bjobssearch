@@ -1,7 +1,7 @@
 jest.dontMock('moment');
 jest.dontMock('../jobs');
 
-var Jobs = require('../jobs');
+var JobFactory = require('../jobs');
 
 describe('job model tests', () => {
 
@@ -11,7 +11,7 @@ describe('job model tests', () => {
         var dummy = [{salary: 3000}, {salary: 10000}];
 
         beforeEach(() => {
-            jobs = new Jobs(dummy);
+            jobs = JobFactory.create(dummy);
         });
 
         it('should get all jobs with no filter', () => {
@@ -75,7 +75,7 @@ describe('job model tests', () => {
         var dummy = [{date: '20/01/2016'}, {date: '15/12/2015'}];
 
         beforeEach(() => {
-            jobs = new Jobs(dummy);
+            jobs = JobFactory.create(dummy);
         });
 
         it('test posted within 30 days', () => {
@@ -104,7 +104,7 @@ describe('job model tests', () => {
         var dummy = [{salary: 2000}, {salary: 8000}];
 
         beforeEach(() => {
-            jobs = new Jobs(dummy);
+            jobs = JobFactory.create(dummy);
         });
 
         it('should sort by highest salary', () => {
@@ -120,7 +120,7 @@ describe('job model tests', () => {
 
         it('should sort by highest salary', () => {
             // Arrange
-            jobs = new Jobs([{salary: 2000},{salary: 1000}]);
+            jobs = JobFactory.create([{salary: 2000},{salary: 1000}]);
             jobs.setSortCriteria('j.salary');
 
             // Act
@@ -150,7 +150,7 @@ describe('job model tests', () => {
         var dummy = [{date: '06/07/2015'}, {date: '06/01/2016'}];
 
         beforeEach(() => {
-            jobs = new Jobs(dummy);
+            jobs = JobFactory.create(dummy);
         });
 
         it('should sort by date', () => {
@@ -167,7 +167,7 @@ describe('job model tests', () => {
         it('should handle equal dates', () => {
             // Arrange
             dummy.push({date: '06/07/2015'});
-            jobs = new Jobs(dummy);
+            jobs = JobFactory.create(dummy);
             jobs.setSortCriteria('moment(j.date, "DD-MM-YYYY")');
 
             // Act
@@ -183,7 +183,7 @@ describe('job model tests', () => {
         var dummy = [{salary: 2000}, {salary: 8000}, {salary: 6000}];
 
         beforeEach(() => {
-            jobs = new Jobs(dummy);
+            jobs = JobFactory.create(dummy);
         });
 
         it('should sort by highest salary after filtering', () => {

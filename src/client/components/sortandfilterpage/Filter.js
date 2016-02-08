@@ -21,4 +21,11 @@ class Filter extends React.Component {
     }
 }
 
+Filter.propTypes = {
+    label: React.PropTypes.string,
+    options: React.PropTypes.array.isRequired,
+    defaultValue: React.PropTypes.string,
+    onFilter: React.PropTypes.func.isRequired
+};
+
 module.exports = Filter;

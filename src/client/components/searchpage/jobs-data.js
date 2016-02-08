@@ -277,7 +277,7 @@ var babajobs = [
             pincode: 560001
         },
         tags: [
-            ' Driver'
+            'Driver'
         ],
         description: [
             'Require driver.' 
@@ -418,7 +418,7 @@ var babajobs = [
             pincode: 560029
         },
         tags: [
-            ' Driver'
+            'Driver'
         ],
         description: [
             'Requires Driver.' 
@@ -560,7 +560,7 @@ var babajobs = [
             pincode: 560094
         },
         tags: [
-            ' Driver'
+            'Driver'
         ],
         description: [
             'Looking for a driver.' 
@@ -583,7 +583,7 @@ var babajobs = [
             pincode: 560001
         },
         tags: [
-            ' Driver'
+            'Driver'
         ],
         description: [
             'Looking for a driver.' 
@@ -1030,7 +1030,7 @@ var babajobs = [
             pincode: 560029
         },
         tags: [
-            ' Maid'
+            'Maid'
         ],
         description: [
             'Requires a maid.' 
@@ -1172,7 +1172,7 @@ var babajobs = [
             pincode: 560029
         },
         tags: [
-            ' Maid'
+            'Maid'
         ],
         description: [
             'Looking for a full time maid.' 
@@ -1195,7 +1195,7 @@ var babajobs = [
             pincode: 560076
         },
         tags: [
-            ' Maid'
+            'Maid'
         ],
         description: [
             'Need a maid for house hold purpose.' 
@@ -2265,10 +2265,10 @@ var babajobs = [
         ],
         description: [
             'We require Driver for Ola Cab who holds commercial badge',
-            'DL(Driving License)',  
-            'Job Type: Full-time(12 hours a day)',  
-            'Salary: Rs. 13,500.00 /month', 
-            'Required experience: Driving: 1-2 years',  
+            'DL(Driving License)',  
+            'Job Type: Full-time(12 hours a day)',  
+            'Salary: Rs. 13,500.00 /month', 
+            'Required experience: Driving: 1-2 years',  
             'Required license: TR Driver...'
 
         ],
@@ -2976,4 +2976,8 @@ var babajobs = [
     }
 ];
 
-module.exports = babajobs;
+module.exports = {
+    getJobs: function() {
+        return babajobs;
+    }
+};
