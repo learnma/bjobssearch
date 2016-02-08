@@ -115,4 +115,21 @@ describe('Search page tests', () => {
         expected.push(mockJobs[1]);
         expect(searchResults.props.jobitems).toEqual(expected);
     });
+
+    it('should send sorted items to display', () => {
+        // Arrange
+        var sortAndFilterPage = getChildComponent(SortAndFilterPage)[0];
+        var searchResults = getChildComponent(SearchResults)[0];
+        var sortCriteriaFn = sortAndFilterPage.props.onSortCriteria;
+
+        // Act
+        sortCriteriaFn('-j.salary');
+
+        // Assert
+        var expected = [];
+        expected.push(mockJobs[1]);
+        expected.push(mockJobs[0]);
+        expect(searchResults.props.jobitems).toEqual(expected);
+
+    });
 });

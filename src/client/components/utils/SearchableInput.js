@@ -26,20 +26,12 @@ class SearchableInput extends React.Component {
         };
     }
 
-    /*keysContainTagsWithPrefix(prefix) {
-        var {tags} = this.props;
-        var ret = _.find(tags, t => t.startsWith(prefix));
-        return ret !== undefined;
-    }*/
-
     onInputChanged(e) {
         let partialInput = e.target.value;
         this.refs.myInput.value = partialInput;
         this.setState({
             showdropdown: false
         });
-
-        //let hasTags = this.keysContainTagsWithPrefix(partialInput);
 
         if (partialInput.length >= 2) {
             this.setState({
