@@ -23,10 +23,10 @@ Prerequisite:
 Install:
 ========
 1. Download the code from github https://github.com/madhanganesh/bjobssearch.git
-2. Type npm start (this will start the node server)
+2. Type npm start from root folder (where package.json is present) 
 3. Browse to http://localhost:8080 to see the app
 
-Note: the assets are alredy built and bundled in the above source repository.
+Note: the assets are already built and bundled in the above source repository.
 If you need to build, type npm run build
 
 Tools Used:
